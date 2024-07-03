@@ -50,5 +50,10 @@ function invokeMPINFromWebPage() {
     };
     var messageBody = JSON.stringify(orderDetails);
     console.log('messageBody',messageBody)
-    window.platformInterface.invokeMPIN(messageBody);
+    if (window?.android) {
+        Android.invokeMPIN(messageBody);
+    }
+    else{
+    window.webkit.messageHandlers.invokeMPIN.postMessage(messageBody);
+    }
 }

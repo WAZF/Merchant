@@ -17,14 +17,21 @@ document.getElementById('buyNow').addEventListener('click', function(event) {
     };
     console.log('Data',data);
 
+    const formData = new FormData();
+    formData.append('purchaseId', "0e22649f-3217-4374-816b-99011f459cc1");
+    formData.append('ucic', "thisisuserid");
+    formData.append('emailId', "someone@gmail.com");
+    formData.append('mobileNo', "7878787878");
+
     // Make the fetch call with a JSON body
     fetch('https://marketplace.digiledge.in/marketplace-simulationserver/marketplace/MPINPayment', {
         mode: 'cors',
         method: 'POST',
-        headers: {
-            // 'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data) // Convert the data to a JSON string
+        // headers: {
+        //     // 'Content-Type': 'application/json'
+        // },
+        // body: JSON.stringify(data) // Convert the data to a JSON string
+        body: formData
     })
     .then(response => response.json())
     .then(data => {

@@ -19,7 +19,6 @@ document.getElementById('buyNow').addEventListener('click', function(event) {
 
     // Make the fetch call with a JSON body
     fetch('https://marketplace.digiledge.in/marketplace-simulationserver/marketplace/MPINPayment', {
-        mode: 'no-cors',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

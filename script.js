@@ -24,7 +24,7 @@ document.getElementById('buyNow').addEventListener('click', function(event) {
     formData.append('mobileNo', "7878787878");
 
     // Make the fetch call with a JSON body
-    fetch('https://marketplace.digiledge.in/marketplace-simulationserver/marketplace/MPINPayment', {
+    fetch('https://marketplace.digiledge.in:444/marketplace-simulationserver/marketplace/MPINPayment', {
         mode: 'cors',
         method: 'POST',
         headers: {

@@ -27,9 +27,9 @@ document.getElementById('buyNow').addEventListener('click', function(event) {
     fetch('https://marketplace.digiledge.in/marketplace-simulationserver/marketplace/MPINPayment', {
         mode: 'cors',
         method: 'POST',
-        // headers: {
-        //     // 'Content-Type': 'application/json'
-        // },
+        headers: {
+            // 'Content-Type': 'application/json'
+        },
         // body: JSON.stringify(data) // Convert the data to a JSON string
         body: formData
     })

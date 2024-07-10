@@ -40,12 +40,14 @@ document.getElementById('buyNow').addEventListener('click', function(event) {
         // window.location.href = 'index.html';
         token = data.token;
         console.log('token',token);
-        window.alert(`Success: ${data.statusMessage}\nToken: ${data.token}`);
+        // window.alert(`Success: ${data.statusMessage}\nToken: ${data.token}`);
+        document.getElementById('responseMessage').innerText = `Success: ${data.statusMessage}\nToken: ${data.token}`;
     })
     .catch((error) => {
         console.log('Error:', error);
         // Optionally, handle the error (e.g., display an error message)
-        window.alert(`Error: ${error.message}`);
+        // window.alert(`Error: ${error.message}`);
+        document.getElementById('responseMessage').innerText = `Error: ${error.message}`;
     });
 });
 

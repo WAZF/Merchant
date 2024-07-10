@@ -39,6 +39,7 @@ document.getElementById('buyNow').addEventListener('click', function(event) {
         // Navigate to the target page after the API call is successful
         // window.location.href = 'index.html';
         token = data.token;
+        console.log('token',token);
         window.alert(`Success: ${data.statusMessage}\nToken: ${data.token}`);
     })
     .catch((error) => {

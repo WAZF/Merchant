@@ -87,6 +87,6 @@ function getPID(){
 function getPurchaseId(purchaseId) {
     console.log("Received Purchase ID from native app:", purchaseId);
     // Do something with the purchase ID, like displaying it on the webpage
-    Pid = purchaseId
+    Pid = purchaseId;
     document.getElementById('successMessage').innerText = `received PID = ${purchaseId}`;
 }

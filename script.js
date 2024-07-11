@@ -79,6 +79,6 @@ function getPID(){
         Android.pid(messageBody);
     }
     else{
-        window.webkit.messageHandlers.pid(messageBody);
+        window.webkit.messageHandlers.pid.postMessage(messageBody);
     }
 }

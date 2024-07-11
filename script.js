@@ -1,16 +1,17 @@
 var token = ""
+var Pid = ""
 document.getElementById('buyNow').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default action of the link
 
     // Get the form data
-    const purchaseId = "0e22649f-3217-4374-816b-99011f459cc1";
+    const purchaseId = Pid;
     const userId = "thisisuserid";
     const emailid = "someone@gmail.com";
     const mobileNumber = "7878787878";
 
     // Define the data to be sent in the request body
     const data = {
-        purchaseId: purchaseId,
+        purchaseId: Pid,
         ucic: userId,
         emailId: emailid,
         mobileNo: mobileNumber
@@ -86,5 +87,6 @@ function getPID(){
 function getPurchaseId(purchaseId) {
     console.log("Received Purchase ID from native app:", purchaseId);
     // Do something with the purchase ID, like displaying it on the webpage
+    Pid = purchaseId
     document.getElementById('successMessage').innerText = `received PID = ${purchaseId}`;
 }

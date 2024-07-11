@@ -68,3 +68,17 @@ function invokeMPINFromWebPage() {
     window.webkit.messageHandlers.invokeMPIN.postMessage(messageBody);
     }
 }
+
+function getPID(){
+    console.log("inside get purchase ID")
+    var msg = {
+    };
+    var messageBody = JSON.stringify(msg);
+    console.log('messageBody',messageBody)
+    if (window?.android){
+        Android.pid(messageBody);
+    }
+    else{
+        window.webkit.messageHandlers.pid(messageBody);
+    }
+}

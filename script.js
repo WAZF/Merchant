@@ -1,5 +1,5 @@
 var token = ""
-var Pid = ""
+var Pid = "0e22649f-3217-4374-816b-99011f459cc1"
 document.getElementById('buyNow').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default action of the link
 

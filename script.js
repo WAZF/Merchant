@@ -41,7 +41,7 @@ document.getElementById('buyNow').addEventListener('click', function(event) {
         token = data.token;
         console.log('token',token);
         // window.alert(`Success: ${data.statusMessage}\nToken: ${data.token}`);
-        document.getElementById('responseMessage').innerText = `Success: ${data.statusMessage}\nToken: ${data.token}`;
+        document.getElementById('successMessage').innerText = `Success: ${data.statusMessage}\nToken: ${data.token}`;
     })
     .catch((error) => {
         console.log('Error:', error);

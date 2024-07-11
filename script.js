@@ -48,7 +48,7 @@ document.getElementById('buyNow').addEventListener('click', function(event) {
         console.log('Error:', error);
         // Optionally, handle the error (e.g., display an error message)
         // window.alert(`Error: ${error.message}`);
-        document.getElementById('responseMessage').innerText = `Error: ${error.message}`;
+        document.getElementById('responseMessage').innerText = `Error: ${error.message}\n${JSON.stringify(error, null, 2)}`;
     });
 });
 

@@ -90,3 +90,10 @@ function getPurchaseId(purchaseId) {
     Pid = purchaseId;
     document.getElementById('pidresponse').innerText = `received PID = ${purchaseId}`;
 }
+
+
+function getAgent(){
+    console.log("Inside getAgent Fn");
+    var msg = navigator.userAgent;
+    docement.getElementById('userAgentRes').innerText = `User Agent: ${msg}`;
+}

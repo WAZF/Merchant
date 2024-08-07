@@ -95,5 +95,6 @@ function getPurchaseId(purchaseId) {
 function getAgent(){
     console.log("Inside getAgent Fn");
     var msg = navigator.userAgent;
-    docement.getElementById('userAgentRes').innerText = `User Agent: ${msg}`;
+    console.log(`useragent: ${ms} `);
+    document.getElementById('userAgentRes').innerText = `User Agent: ${msg}`;
 }

@@ -29,8 +29,6 @@ document.getElementById('buyNow').addEventListener('click', function(event) {
         mode: 'cors',
         method: 'POST',
         headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Accept',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data) // Convert the data to a JSON string

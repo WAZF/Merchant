@@ -31,7 +31,6 @@ document.getElementById('buyNow').addEventListener('click', function(event) {
         headers: {
             'Content-Type': 'application/json'
         },
-        credentials: 'include',
         body: JSON.stringify(data) // Convert the data to a JSON string
         // body: formData
     })

@@ -84,6 +84,20 @@ function getPID(){
     }
 }
 
+function getStatus(){
+    console.log("inside get status")
+    var msg = {
+    };
+    var messageBody = JSON.stringify(msg);
+    console.log('messageBody',messageBody)
+    if (window?.android){
+        Android.pid(messageBody);
+    }
+    else{
+        window.webkit.messageHandlers.pid.postMessage(messageBody);
+    }
+}
+
 function getPurchaseId(purchaseId) {
     console.log("Received Purchase ID from native app:", purchaseId);
     // Do something with the purchase ID, like displaying it on the webpage

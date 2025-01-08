@@ -98,6 +98,11 @@ function getStatus(){
     }
 }
 
+function getMPINStatus(MPINstaus){
+    console.log("Received MPIN status from native app:", MPINstaus);
+    document.getElementById('pidresponse').innerText = `received MPIN status  = ${MPINstaus}`;
+}
+
 function getPurchaseId(purchaseId) {
     console.log("Received Purchase ID from native app:", purchaseId);
     // Do something with the purchase ID, like displaying it on the webpage

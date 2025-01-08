@@ -101,7 +101,7 @@ function getStatus(){
 
 function getMPINStatus(MPINstaus){
     console.log("Received MPIN status from native app:", MPINstaus);
-    document.getElementById('pidresponse').innerText = `received MPIN status  = ${MPINstaus}`;
+    document.getElementById('StatusMPIN').innerText = `received MPIN status  = ${MPINstaus}`;
 }
 
 function getPurchaseId(purchaseId) {

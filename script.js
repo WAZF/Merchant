@@ -94,6 +94,7 @@ function getStatus(){
         Android.status(messageBody);
     }
     else{
+        console.log("Status chsange");
         window.webkit.messageHandlers.status.postMessage(messageBody);
     }
 }

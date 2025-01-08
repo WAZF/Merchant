@@ -91,10 +91,10 @@ function getStatus(){
     var messageBody = JSON.stringify(msg);
     console.log('messageBody',messageBody)
     if (window?.android){
-        Android.pid(messageBody);
+        Android.status(messageBody);
     }
     else{
-        window.webkit.messageHandlers.pid.postMessage(messageBody);
+        window.webkit.messageHandlers.status.postMessage(messageBody);
     }
 }
 

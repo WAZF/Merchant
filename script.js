@@ -74,8 +74,9 @@ document.getElementById('generate_payment').addEventListener('click', function(e
         purchaseId: Pid,
         orderId: "98472938r90gu0",
         userId: userId,
-        emailId: emailid,
-        mobileNo: mobileNumber
+        email: emailid,
+        phone_no: mobileNumber,
+        orderDetails: orderDetails
     };
     console.log('Data',data);
 

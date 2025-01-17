@@ -52,6 +52,67 @@ document.getElementById('buyNow').addEventListener('click', function(event) {
     });
 });
 
+
+document.getElementById('generate_payment').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default action of the link
+
+    // Get the form data
+    const purchaseId = Pid;
+    const userId = "thisisuserid";
+    const emailid = "someone@gmail.com";
+    const mobileNumber = "7878787878";
+
+    // Define the data to be sent in the request body
+    const orderDetails = {
+        amount: 500,
+        txnId: "merchanttxnId",
+        timestamp: "2025-01-17 23: 41: 42.826",
+        payment: "MPIN"
+    };
+    const data = {
+        apiKey: "2222222223333",
+        purchaseId: Pid,
+        orderId: "98472938r90gu0",
+        userId: userId,
+        emailId: emailid,
+        mobileNo: mobileNumber
+    };
+    console.log('Data',data);
+
+    const formData = new FormData();
+    formData.append('purchaseId', "0e22649f-3217-4374-816b-99011f459cc1");
+    formData.append('ucic', "thisisuserid");
+    formData.append('emailId', "someone@gmail.com");
+    formData.append('mobileNo', "7878787878");
+
+    // Make the fetch call with a JSON body
+    fetch('https://marketplace.digiledge.in/marketplace-paymentserver/marketplace/payments/token', {
+        mode: 'cors',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data) // Convert the data to a JSON string
+        // body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        // Navigate to the target page after the API call is successful
+        // window.location.href = 'index.html';
+        token = data.token;
+        console.log('token',token);
+        // window.alert(`Success: ${data.statusMessage}\nToken: ${data.token}`);
+        document.getElementById('successMessage').innerText = `Success: ${data.statusMessage}\nToken: ${data.token}\nData: ${JSON.stringify(data, null, 2)}`;
+    })
+    .catch((error) => {
+        console.log('Error:', error);
+        // Optionally, handle the error (e.g., display an error message)
+        // window.alert(`Error: ${error.message}`);
+        document.getElementById('responseMessage').innerText = `Error: ${error.message}\n${JSON.stringify(error, null, 2)}`;
+    });
+});
+
 function invokeMPINFromWebPage() {
     console.log("inside invokeMPIN function")
     var orderDetails = {

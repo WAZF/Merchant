@@ -59,7 +59,7 @@ document.getElementById('generate_payment').addEventListener('click', function(e
     // Get the form data
     const purchaseId = Pid;
     const userId = "thisisuserid";
-    const emailid = "someone@gmail.com";
+    const emailid = "someone@gmail.com".trim();
     const mobileNumber = "7878787878";
 
     // Define the data to be sent in the request body
@@ -74,7 +74,7 @@ document.getElementById('generate_payment').addEventListener('click', function(e
         purchaseId: Pid,
         orderId: "98472938r90gu0",
         userId: userId,
-        email: emailid,
+        email: "someone@gmail.com",
         phone_no: mobileNumber,
         orderDetails: orderDetails
     };

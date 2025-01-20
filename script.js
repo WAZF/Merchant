@@ -117,6 +117,7 @@ document.getElementById('generate_payment').addEventListener('click', function(e
 function invokeMPINFromWebPage() {
     console.log("inside invokeMPIN function")
     var orderDetails = {
+        orderDetails: "something else",
         accountNumber: "1234567890", 
         purchaseToken: token,   
         amount: 100,                 

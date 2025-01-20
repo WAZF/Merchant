@@ -154,7 +154,7 @@ function getStatus(){
     var messageBody = JSON.stringify(msg);
     console.log('messageBody',messageBody)
     if (window?.android){
-        Android.status(messageBody);
+        Android.getMPINStatus(messageBody);
     }
     else{
         console.log("Status chsange");

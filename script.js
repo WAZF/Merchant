@@ -155,9 +155,9 @@ function getStatus(){
     console.log('messageBody',messageBody)
     if (window?.android){
         Android.getMPINStatus();
-        var purchaseId = Android.getPurchaseId();
-        console.log("Purchase ID from Android: " + purchaseId);
-        document.getElementById('StatusMPIN').innerText = `received MPIN status  = ${purchaseId}`;
+        var MPINstatus = Android.getMPINStatus();
+        console.log("Purchase ID from Android: " + MPINstatus);
+        document.getElementById('StatusMPIN').innerText = `received MPIN status  = ${MPINstatus}`;
     }
     else{
         console.log("Status chsange");

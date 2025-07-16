@@ -133,6 +133,20 @@ function invokeMPINFromWebPage() {
     }
 }
 
+function sendDeepLink(){
+    console.log("inside sendDeepLinkl()")
+    var DeepLink = {
+        DeepLink: "something else"
+    };
+    var messageBody = JSON.stringify(DeepLink);
+    if (window?.android) {
+        Android.invokeMPIN(messageBody);
+    }
+    else{
+    window.webkit.messageHandlers.invokeMPIN.postMessage(messageBody);
+    }
+}
+
 function getPID(){
     console.log("inside get purchase ID")
     var msg = {

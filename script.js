@@ -140,10 +140,10 @@ function sendDeepLink(){
     };
     var messageBody = JSON.stringify(DeepLink);
     if (window?.android) {
-        Android.invokeMPIN(messageBody);
+        Android.passDeepLink(messageBody);
     }
     else{
-    window.webkit.messageHandlers.invokeMPIN.postMessage(messageBody);
+    window.webkit.messageHandlers.passDeepLink.postMessage(messageBody);
     }
 }
 

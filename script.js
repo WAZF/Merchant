@@ -115,9 +115,31 @@ document.getElementById('generate_payment').addEventListener('click', function(e
 });
 
 function invokeMPINFromWebPage() {
+    // console.log("inside invokeMPIN function")
+    // var orderDetails = {
+    //     orderDetails: "something else",
+    //     accountNumber: "1234567890", 
+    //     purchaseToken: token,   
+    //     amount: 100,                 
+    //     timestamp: new Date().toISOString() 
+    // };
+    // var messageBody = JSON.stringify(orderDetails);
+    // console.log('messageBody',messageBody)
+    // if (window?.android) {
+    //     Android.invokeMPIN(messageBody);
+    // }
+    // else{
+    // window.webkit.messageHandlers.invokeMPIN.postMessage(messageBody);
+    // }
     console.log("inside invokeMPIN function")
     var orderDetails = {
-        orderDetails: "something else",
+        orderDetails: { 
+        "payeeName":"Merchant Dummy", 
+        "mobileNumber":"9999999999", 
+        "amount":"100.00", 
+        "debitAccount":"1234567", 
+        "comments":"Invoke TOPTP" 
+	 },
         accountNumber: "1234567890", 
         purchaseToken: token,   
         amount: 100,                 
@@ -126,10 +148,10 @@ function invokeMPINFromWebPage() {
     var messageBody = JSON.stringify(orderDetails);
     console.log('messageBody',messageBody)
     if (window?.android) {
-        Android.invokeMPIN(messageBody);
+        Android.invokeTotpWithMPIN(messageBody);
     }
     else{
-    window.webkit.messageHandlers.invokeMPIN.postMessage(messageBody);
+    window.webkit.messageHandlers.invokeTotpWithMPIN.postMessage(messageBody);
     }
 }
 

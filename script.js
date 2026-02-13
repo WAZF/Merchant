@@ -140,9 +140,7 @@ function invokeMPINFromWebPage() {
         "debitAccount":"1234567", 
         "comments":"Invoke TOPTP" 
 	 },
-        accountNumber: "1234567890", 
-        purchaseToken: token,   
-        amount: 100,                 
+        purchaseToken: token,                   
         timestamp: new Date().toISOString() 
     };
     var messageBody = JSON.stringify(orderDetails);

@@ -153,6 +153,25 @@ function invokeMPINFromWebPage() {
     }
 }
 
+function invokeMPINFlow(){
+    console.log("inside invokeMPIN function")
+    var orderDetails = {
+        orderDetails: "something else",
+        accountNumber: "1234567890", 
+        purchaseToken: token,   
+        amount: 100,                 
+        timestamp: new Date().toISOString() 
+    };
+    var messageBody = JSON.stringify(orderDetails);
+    console.log('messageBody',messageBody)
+    if (window?.android) {
+        Android.invokeMPIN(messageBody);
+    }
+    else{
+    window.webkit.messageHandlers.invokeMPIN.postMessage(messageBody);
+    }
+}
+
 function sendDeepLink(){
     console.log("inside sendDeepLinkl()")
     var DeepLink = {

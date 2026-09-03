@@ -134,11 +134,11 @@ function invokeMPINFromWebPage() {
     console.log("inside invokeMPIN function")
     var orderDetails = {
         orderDetails: { 
-        payeeName:"Merchant Dummy", 
+        payeeName:"HDFC ERGO GENERAL INSURANCE COMPANY LIMITED", 
         mobileNumber:"9999999999", 
-        amount:"100.00", 
-        debitAccount:"1234567", 
-        comments:"Invoke TOPTP" 
+        amount:"865", 
+        debitAccount:"12345676789012345", 
+        comments:"Pravasi Insurance Payment Totp" 
 	 },
         purchaseToken: token,                   
         timestamp: new Date().toISOString() 

@@ -65,10 +65,10 @@
     var messageBody = JSON.stringify(consentDetails);
     console.log('messageBody', messageBody)
     if (window?.android) {
-      Android.consent-notice-result(messageBody);
+      Android.invokeConsentNotice(messageBody);
     }
     else {
-      window.webkit.messageHandlers.consent-notice-result.postMessage(messageBody);
+      window.webkit.messageHandlers['consent-notice-result'].postMessage(messageBody);
     }
   }
 
@@ -103,6 +103,8 @@
   }
   acceptedBtn.addEventListener('click', () => simulate('accepted'));
   rejectedBtn.addEventListener('click', () => simulate('rejected'));
+
+  invokeConsentNotice();
 
 </script>
 </body>

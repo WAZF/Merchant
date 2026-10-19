@@ -53,39 +53,41 @@
   }
 
   // The webview (native) owns the postMessage listener. Hand it the ids the
-  // same way sendDeepLink() does in script.js.
-  function sendConsentIds() {
-    var messageBody = JSON.stringify({
+  // same way invokeMPINFlow() / sendDeepLink() do in script.js.
+  function invokeConsentNotice() {
+    console.log("inside invokeConsentNotice function")
+    var consentDetails = {
       name: 'consent-notice-result',
       data_fiduciary_id: ids.data_fiduciary_id.value,
       group_reference_id: ids.group_reference_id.value,
       notice_workflow_id: ids.notice_workflow_id.value,
-    });
+    };
+    var messageBody = JSON.stringify(consentDetails);
+    console.log('messageBody', messageBody)
     if (window?.android) {
-      Android.passConsentNotice(messageBody);
-    } else if (window.webkit?.messageHandlers?.passConsentNotice) {
-      window.webkit.messageHandlers.passConsentNotice.postMessage(messageBody);
-    } else {
-      console.warn('No native bridge found, ids not sent');
+      Android.invokeConsentNotice(messageBody);
+    }
+    else {
+      window.webkit.messageHandlers.invokeConsentNotice.postMessage(messageBody);
     }
   }
 
-  // Native calls this once it receives the consent-notice-result event.
-  // Accepts an object or a JSON string.
-  function onConsentResult(resultSet) {
+  // Native calls this with the resultSet once it receives consent-notice-result,
+  // like getPurchaseId() / getMPINStatus() in script.js.
+  function getConsentResult(resultSet) {
+    console.log("Received consent result from native app:", resultSet);
     if (typeof resultSet === 'string') resultSet = JSON.parse(resultSet);
     // Accept the full event ({ name, resultSet }) or just the resultSet
     if (resultSet.name === 'consent-notice-result') resultSet = resultSet.resultSet;
     output.textContent = JSON.stringify(resultSet, null, 2);
     showAction(resultSet.data_principal_action);
   }
-  window.onConsentResult = onConsentResult;
 
-  document.getElementById('sendBtn').addEventListener('click', sendConsentIds);
+  document.getElementById('sendBtn').addEventListener('click', invokeConsentNotice);
 
   // Buttons only simulate a native callback, for testing in a plain browser
   function simulate(action) {
-    onConsentResult({
+    getConsentResult({
       status_code: 200,
       message: 'Success',
       status: 'submitted',
@@ -102,7 +104,6 @@
   acceptedBtn.addEventListener('click', () => simulate('accepted'));
   rejectedBtn.addEventListener('click', () => simulate('rejected'));
 
-  sendConsentIds();
 </script>
 </body>
 </html>

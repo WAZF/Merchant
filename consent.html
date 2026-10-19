@@ -27,8 +27,6 @@
   <label for="noticeWorkflowId">notice_workflow_id</label>
   <input id="noticeWorkflowId" value="9f4e1a2b-6c334d78-b0e17a2c9d4f5b60">
 
-  <button id="sendBtn" type="button" style="margin-top:16px;padding:10px 16px">Send IDs to app</button>
-
   <div class="actions">
     <button id="acceptedBtn" type="button">Accepted</button>
     <button id="rejectedBtn" type="button">Rejected</button>
@@ -52,28 +50,7 @@
     rejectedBtn.classList.toggle('active', action === 'rejected');
   }
 
-  // The webview (native) owns the postMessage listener. Hand it the ids the
-  // same way invokeMPINFlow() / sendDeepLink() do in script.js.
-  function invokeConsentNotice() {
-    console.log("inside invokeConsentNotice function")
-    var consentDetails = {
-      name: 'consent-notice-result',
-      data_fiduciary_id: ids.data_fiduciary_id.value,
-      group_reference_id: ids.group_reference_id.value,
-      notice_workflow_id: ids.notice_workflow_id.value,
-    };
-    var messageBody = JSON.stringify(consentDetails);
-    console.log('messageBody', messageBody)
-    if (window?.android) {
-      Android.invokeConsentNotice(messageBody);
-    }
-    else {
-      window.webkit.messageHandlers['consent-notice-result'].postMessage(messageBody);
-    }
-  }
-
-  // Native calls this with the resultSet once it receives consent-notice-result,
-  // like getPurchaseId() / getMPINStatus() in script.js.
+  // Native calls this with the resultSet once it receives consent-notice-result.
   function getConsentResult(resultSet) {
     console.log("Received consent result from native app:", resultSet);
     if (typeof resultSet === 'string') resultSet = JSON.parse(resultSet);
@@ -83,11 +60,25 @@
     showAction(resultSet.data_principal_action);
   }
 
-  document.getElementById('sendBtn').addEventListener('click', invokeConsentNotice);
+  // Same listener the client doc asks for: the notice iFrame posts
+  // { name: 'consent-notice-result', resultSet } to this page. The SDK webview also
+  // forwards it to native, which answers through getConsentResult().
+  const TRUSTED_ORIGIN_URL = 'https://privy.idfy.com';
+  window.addEventListener('message', (event) => {
+    // Origin is only enforced for cross-origin senders; the buttons below post from this page.
+    if (event.origin !== window.location.origin && event.origin !== TRUSTED_ORIGIN_URL) {
+      console.warn('Ignoring message from untrusted origin:', event.origin);
+      return;
+    }
+    const { name, resultSet } = event.data || {};
+    if (name === 'consent-notice-result') {
+      getConsentResult(resultSet);
+    }
+  });
 
-  // Buttons only simulate a native callback, for testing in a plain browser
+  // Buttons post the event the way the Privy iFrame does, for testing
   function simulate(action) {
-    getConsentResult({
+    window.postMessage({ name: 'consent-notice-result', resultSet: {
       status_code: 200,
       message: 'Success',
       status: 'submitted',
@@ -99,12 +90,10 @@
         : 'all_mandatory_consents_rejected',
       data_principal_action: action,
       type: 'notice_workflow',
-    });
+    } }, '*');
   }
   acceptedBtn.addEventListener('click', () => simulate('accepted'));
   rejectedBtn.addEventListener('click', () => simulate('rejected'));
-
-  invokeConsentNotice();
 
 </script>
 </body>
